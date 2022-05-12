@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ToDo List</title>
+</head>
+<body>
+    <header id="bar-header">
+        <div class="box">
+            <span class="hour">5 de Maio de 2022 - 20:32:23</span>
+            <button class="theme"><i class="fa-solid fa-lightbulb fa-2x"></i></button>
+        </div>
+    </header>
+
+    <main id="main">
+        <section id="search-add">
+            <h4>Buscar tarefa</h4>
+            <input type="text" name="busca" id="busca-tarefa">
+            <button class="add"><i class="fa-solid fa-circle-plus fa-2x"></i></button>
+        </section>
+        <section class="cards">
+        </section>
+
+        <div id="card-form">
+            <form id="form">
+                <label for="title">Título:</label>
+                <input type="text" name="title" id="title">
+                <label for="description">Descrição:</label>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                <input type="submit" value="Adicionar tarefa">
+            </form>
+        </div>
+
+        
+    </main>
+
+    <script src="https://kit.fontawesome.com/bf96dbb21e.js" crossorigin="anonymous"></script>
+    <script src="./script/script.js"></script>
+</body>
+</html>

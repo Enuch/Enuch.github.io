@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#bar-header {
+    width: 100vw;
+    height: 45px;
+
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+#bar-header .box {
+    width: 70vw;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#bar-header .hour {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#bar-header .theme {
+    cursor: pointer;
+    color: white;
+
+    border: none;
+    background-color: black;
+}
+
+#bar-header .theme:hover {
+    cursor: pointer;
+    color: yellow;
+
+    border: none;
+}
+
+/* MAIN */
+#main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#search-add {
+    margin-top: 50px;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#search-add #busca-tarefa{
+    width: 70vw;
+    padding: 10px 0;
+    margin-top: 20px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#busca-tarefa:focus-visible {
+    outline: none;
+}
+
+#search-add .add{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+#search-add .add:hover {
+    color: rgb(29, 28, 28);
+}
+
+/* CARDS */
+.cards {
+    width: 70vw;
+    margin-top: 50px;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    height: 180px;
+    margin: 10px;
+
+    background-color: rgb(248, 236, 168);
+    
+    border-radius: 15px;
+    box-shadow: 0px 2px 2px rgb(153, 149, 149);
+}
+
+.card:hover {
+    padding: 20px;
+    background-color: wheat;
+}
+
+.card section {
+    padding: 10px;
+}
+
+.card .text .title{
+    margin-bottom: 20px;
+}
+
+.card .text .description{
+    width: 100px;
+    height: 100px;
+}
+
+.card .icon i{
+    margin-bottom: 55px;
+    cursor: pointer;
+}
+
+.card .icon .fa-star, .fa-check {
+    color: white;
+}
+
+.card .icon .fa-star:hover {
+    color: yellow;
+}
+
+.card .icon .fa-check:hover {
+    color: green;
+}
+
+.card .icon .fa-trash {
+    color: red;
+}
