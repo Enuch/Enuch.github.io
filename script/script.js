@@ -4,11 +4,13 @@ let dataCard = {};
 let cardForm = document.querySelector('#card-form');
 let form = document.querySelector('#form');
 let fields = document.querySelectorAll('#form [name]');
+let idCards = 0;
 
 function createCards(data) {
+    idCards++;
     let card = document.createElement('article');
     card.innerHTML = `
-    <article class="card">
+    <article id="a${idCards}" class="card">
         <section class="text">
             <h4 class="title">${data.title}</h4>
             <p class="description">${data.description}</p>
@@ -23,6 +25,7 @@ function createCards(data) {
     `;
     painelCards.appendChild(card);
 }
+
 
 function callForm() {
     cardForm.style.display = 'block';
@@ -51,6 +54,8 @@ form.addEventListener('submit', (event) => {
 });
 
 cardForm.style.display = 'none';
+
+
 
 // Paínel
 function updateDateTime() {
