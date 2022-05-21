@@ -1,7 +1,7 @@
 let painelCards = document.querySelector('.cards');
 let buttonAddCard = document.querySelector('.add');
 let dataCard = {};
-let cardForm = document.querySelector('#card-form');
+let cardForm = document.querySelector('.card-form');
 let form = document.querySelector('#form');
 let fields = document.querySelectorAll('#form [name]');
 let idCards = 0;
@@ -29,6 +29,12 @@ function createCards(data) {
 
 function callForm() {
     cardForm.style.display = 'block';
+    document.querySelector('.modal').style.display = 'block';
+}
+
+function byeForm() {
+    cardForm.style.display = 'none';
+    document.querySelector('.modal').style.display = 'none';
 }
 
 buttonAddCard.addEventListener('click', callForm);
@@ -48,14 +54,10 @@ form.addEventListener('submit', (event) => {
 
     dataCard.time = new Date().toLocaleTimeString('pt-BR');
 
-    cardForm.style.display = 'none';
+    byeForm();
 
     createCards(dataCard);
 });
-
-cardForm.style.display = 'none';
-
-
 
 // Paínel
 function updateDateTime() {
