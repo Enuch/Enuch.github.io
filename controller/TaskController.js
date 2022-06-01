@@ -6,40 +6,63 @@ let form = document.querySelector('#form');
 let fields = document.querySelectorAll('#form [name]');
 let idCards = 0;
 
+
+class TaskController {
+
+    constructor() {
+        this.taskForm = document.querySelector('#form');
+        this.buttonCallForm = document.querySelector('#call-form');
+        this.modalForm = document.querySelector('#modal-form');
+
+        this.addEventCallForm();
+    }
+
+    callForm() {
+        //cardForm.style.display = 'block';
+        this.modalForm.style.display = 'block';
+    }
+
+    ByeForm() {
+        //cardForm.style.display = 'none';
+        this.modalForm.style.display = 'none';
+    }
+
+    addEventCallForm() {
+        this.buttonCallForm.addEventListener('click', this.callForm);
+    }
+
+    formSubmit() {
+
+    }
+
+    createTask(data) {
+        let task = new Task();
+    }
+
+    createCards(data) {
+        idCards++;
+        let card = document.createElement('article');
+        card.innerHTML = `
+        <article id="a${idCards}" class="card">
+            <section class="text">
+                <h4 class="title">${data.title}</h4>
+                <p class="description">${data.description}</p>
+                <span class="data">${data.date} às ${data.time}</span>
+            </section>
+            <section class="icon">
+                <p><i class="fa-solid fa-star"></i></p>
+                <p><i class="fa-solid fa-check"></i></p>
+                <p><i class="fa-solid fa-trash fa-1x"></i></p>
+            </section>
+        </article>
+        `;
+        painelCards.appendChild(card);
+    }
+}
 // window.onload = () => {
 //     document.querySelector('.theme').addEventListener('click', onTheme);
 // };
 
-function createCards(data) {
-    idCards++;
-    let card = document.createElement('article');
-    card.innerHTML = `
-    <article id="a${idCards}" class="card">
-        <section class="text">
-            <h4 class="title">${data.title}</h4>
-            <p class="description">${data.description}</p>
-            <span class="data">${data.date} às ${data.time}</span>
-        </section>
-        <section class="icon">
-            <p><i class="fa-solid fa-star"></i></p>
-            <p><i class="fa-solid fa-check"></i></p>
-            <p><i class="fa-solid fa-trash fa-1x"></i></p>
-        </section>
-    </article>
-    `;
-    painelCards.appendChild(card);
-}
-
-
-function callForm() {
-    cardForm.style.display = 'block';
-    document.querySelector('.modal').style.display = 'block';
-}
-
-function byeForm() {
-    cardForm.style.display = 'none';
-    document.querySelector('.modal').style.display = 'none';
-}
 
 buttonAddCard.addEventListener('click', callForm);
 

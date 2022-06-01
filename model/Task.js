@@ -62,4 +62,8 @@ class Task {
 
         return date;
     }
+
+    generateID() {
+        let id = 1;
+    }
 }
