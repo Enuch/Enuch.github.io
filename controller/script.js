@@ -6,6 +6,10 @@ let form = document.querySelector('#form');
 let fields = document.querySelectorAll('#form [name]');
 let idCards = 0;
 
+// window.onload = () => {
+//     document.querySelector('.theme').addEventListener('click', onTheme);
+// };
+
 function createCards(data) {
     idCards++;
     let card = document.createElement('article');
@@ -72,5 +76,13 @@ function updateDateTime() {
     let dateTime = document.querySelector('#bar-header .hour');
     dateTime.innerHTML = `${date} - ${time}`;
 }
+
+// function onTheme() {
+//     (document.querySelector('.theme').style.color = 'yellow') ? 'white' : 'yellow';
+//     document.querySelector('body').style.backgroundColor = 'black';
+//     document.querySelector('#bar-header').style.backgroundColor = 'purple';
+//     document.querySelector('#busca-tarefa').style.borderBottom = '1px solid purple';
+
+// }
 
 setInterval(updateDateTime, 1000);
