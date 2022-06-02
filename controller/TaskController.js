@@ -1,53 +1,72 @@
-let painelCards = document.querySelector('.cards');
-let buttonAddCard = document.querySelector('.add');
-let dataCard = {};
-let cardForm = document.querySelector('.card-form');
-let form = document.querySelector('#form');
-let fields = document.querySelectorAll('#form [name]');
-let idCards = 0;
-
-
 class TaskController {
 
     constructor() {
         this.taskForm = document.querySelector('#form');
-        this.buttonCallForm = document.querySelector('#call-form');
-        this.modalForm = document.querySelector('#modal-form');
+        this.fields = document.querySelectorAll('#form [name]');
+        this.buttonCallForm = document.querySelector('#add');
+        this.listaCards = document.querySelector('.lista-cards');
+        this.date = document.querySelector('.date');
 
+        this.updateDateTime();
         this.addEventCallForm();
+        this.addEventSubmitForm();
     }
 
     callForm() {
-        //cardForm.style.display = 'block';
-        this.modalForm.style.display = 'block';
+        document.querySelector('#modal-form').style.display = 'block';
     }
 
     ByeForm() {
-        //cardForm.style.display = 'none';
-        this.modalForm.style.display = 'none';
+        document.querySelector('#modal-form').style.display = 'none';
     }
 
     addEventCallForm() {
         this.buttonCallForm.addEventListener('click', this.callForm);
     }
 
-    formSubmit() {
+    addEventSubmitForm() {
+        console.log('ola')
+        this.taskForm.addEventListener('submit', (event) => {
+            event.preventDefault();
 
+            let data = {};
+        
+            this.fields.forEach((element) => {
+                data[element.name] = element.value;
+            });
+        
+            let newID = this.generateID();
+            let task = this.createTask(newID, data.title, data.description);
+
+            console.log(data);
+
+            data[created] = task.created;
+        
+            this.byeForm();
+            this.createCards(data);
+        });
     }
 
     createTask(data) {
-        let task = new Task();
+        return new Task();
+    }
+
+    generateID() {
+        window.id = 0;
+
+        id++;
+
+        return id;
     }
 
     createCards(data) {
-        idCards++;
         let card = document.createElement('article');
         card.innerHTML = `
-        <article id="a${idCards}" class="card">
+        <article id="a${id}" class="card">
             <section class="text">
                 <h4 class="title">${data.title}</h4>
                 <p class="description">${data.description}</p>
-                <span class="data">${data.date} às ${data.time}</span>
+                <span class="created">${data.created}</span>
             </section>
             <section class="icon">
                 <p><i class="fa-solid fa-star"></i></p>
@@ -56,49 +75,36 @@ class TaskController {
             </section>
         </article>
         `;
-        painelCards.appendChild(card);
+        console.log(this.listaCards);
+        this.listaCards.appendChild(card);
     }
+
+    updateDateTime() {
+        setInterval(() => {
+            let date = new Date().toLocaleDateString('pt-BR', {
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            });
+        
+            let time = new Date().toLocaleTimeString('pt-BR');
+        
+            let dateTime = document.querySelector('#bar-header .date');
+            dateTime.innerHTML = `${date} - ${time}`;
+        }, 1000);
+    }
+
+    
+
 }
 // window.onload = () => {
 //     document.querySelector('.theme').addEventListener('click', onTheme);
 // };
 
 
-buttonAddCard.addEventListener('click', callForm);
-
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    fields.forEach((element, index) => {
-        dataCard[element.name] = element.value;
-    });
-
-    dataCard.date = new Date().toLocaleDateString('pt-BR', {
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
-    });
-
-    dataCard.time = new Date().toLocaleTimeString('pt-BR');
-
-    byeForm();
-
-    createCards(dataCard);
-});
 
 // Paínel
-function updateDateTime() {
-    let date = new Date().toLocaleDateString('pt-BR', {
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
-    });
 
-    let time = dataCard.time = new Date().toLocaleTimeString('pt-BR');
-
-    let dateTime = document.querySelector('#bar-header .hour');
-    dateTime.innerHTML = `${date} - ${time}`;
-}
 
 // function onTheme() {
 //     (document.querySelector('.theme').style.color = 'yellow') ? 'white' : 'yellow';
@@ -108,4 +114,3 @@ function updateDateTime() {
 
 // }
 
-setInterval(updateDateTime, 1000);

@@ -21,7 +21,7 @@
 
 }
 
-#bar-header .hour {
+#bar-header .date {
     color: white;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -139,7 +139,7 @@
     color: red;
 }
 
-.modal {
+#modal-form {
     width: 100vw;
     height: 160vh;
 
@@ -153,7 +153,7 @@
     display: none;
 }
 
-.card-form {
+#card-form {
     width: 300px;
     height: 450px;
 

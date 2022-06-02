@@ -58,12 +58,8 @@ class Task {
             day: '2-digit',
             month: 'short',
             year: 'numeric'
-        }).concat(new Date().toLocaleTimeString('pt-BR'));
+        }).concat(` às ${new Date().toLocaleTimeString('pt-BR')}`);
 
         return date;
-    }
-
-    generateID() {
-        let id = 1;
     }
 }
