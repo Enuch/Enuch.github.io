@@ -16,7 +16,7 @@ class TaskController {
         document.querySelector('#modal-form').style.display = 'block';
     }
 
-    ByeForm() {
+    byeForm() {
         document.querySelector('#modal-form').style.display = 'none';
     }
 
@@ -35,12 +35,12 @@ class TaskController {
                 data[element.name] = element.value;
             });
         
-            let newID = this.generateID();
-            let task = this.createTask(newID, data.title, data.description);
+            data['id'] = this.generateID();
+            let task = this.createTask(data);
 
-            console.log(data);
+            data["created"] = task.created;
 
-            data[created] = task.created;
+            console.log(task);
         
             this.byeForm();
             this.createCards(data);
@@ -48,7 +48,7 @@ class TaskController {
     }
 
     createTask(data) {
-        return new Task();
+        return new Task(data.id, data.title, data.description);
     }
 
     generateID() {
