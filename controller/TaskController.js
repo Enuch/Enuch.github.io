@@ -30,6 +30,17 @@ class TaskController {
         this.buttonCallForm.addEventListener('click', this.callForm);
     }
 
+    addEventDeleteTask(card) {
+        card.querySelector('.fa-trash').addEventListener('click', () => {
+            if (confirm('Deseja deletar esta tarefa?')) {
+
+                LocalStorage.deleteTask(card.id);
+                console.log(card)
+                card.remove();
+            }
+        });
+    }
+
     addEventSubmitForm() {
         this.taskForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -69,18 +80,22 @@ class TaskController {
     generateID() {
         let id = localStorage.getItem('IDs');
 
-        if (id == null) {
+        if (!id) {
             id = 1
-            localStorage.setItem('IDs', id);
+        } else {
+            parseInt(id++);
         }
+
+        localStorage.setItem('IDs', id);
 
         return id;
     }
 
     createCards(data) {
         let card = document.createElement('article');
+        card.id = data._id;
+        card.setAttribute('class', 'card');
         card.innerHTML = `
-        <article id="a${data._id}" class="card">
             <section class="text">
                 <h4 class="title">${data._title}</h4>
                 <p class="description">${data._description}</p>
@@ -91,8 +106,8 @@ class TaskController {
                 <p><i class="fa-solid fa-check"></i></p>
                 <p><i class="fa-solid fa-trash fa-1x"></i></p>
             </section>
-        </article>
         `;
+        this.addEventDeleteTask(card);
         this.listaCards.appendChild(card);
     }
 

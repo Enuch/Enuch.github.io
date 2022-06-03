@@ -18,12 +18,16 @@ class LocalStorage {
 
     static deleteTask(idDelete) {
         let arrayTask = JSON.parse(localStorage.getItem('tasks'));
+        console.log(idDelete);
+        console.log(arrayTask);
 
         arrayTask.forEach((data, index) => {
             if (idDelete == data._id) {
                 arrayTask.splice(index, 1);
             }
         });
+
+        localStorage.setItem('tasks', JSON.stringify(arrayTask));
     }
 
 }
