@@ -10,6 +10,8 @@ class TaskController {
         this.updateDateTime();
         this.addEventCallForm();
         this.addEventSubmitForm();
+        this.addEventCancelForm();
+        this.getAllTasks();
     }
 
     callForm() {
@@ -20,12 +22,15 @@ class TaskController {
         document.querySelector('#modal-form').style.display = 'none';
     }
 
+    addEventCancelForm() {
+        document.querySelector('.cancel-button').addEventListener('click', this.byeForm);
+    }
+
     addEventCallForm() {
         this.buttonCallForm.addEventListener('click', this.callForm);
     }
 
     addEventSubmitForm() {
-        console.log('ola')
         this.taskForm.addEventListener('submit', (event) => {
             event.preventDefault();
 
@@ -38,12 +43,10 @@ class TaskController {
             data['id'] = this.generateID();
             let task = this.createTask(data);
 
-            data["created"] = task.created;
+            LocalStorage.setTask(task);
 
-            console.log(task);
-        
             this.byeForm();
-            this.createCards(data);
+            this.createCards(task);
         });
     }
 
@@ -51,10 +54,25 @@ class TaskController {
         return new Task(data.id, data.title, data.description);
     }
 
-    generateID() {
-        window.id = 0;
+    getAllTasks() {
+        let tasks = LocalStorage.getAllTask();
 
-        id++;
+        if (!tasks) {
+            return;
+        }
+
+        tasks.forEach((data) => {
+            this.createCards(data)
+        });
+    }
+
+    generateID() {
+        let id = localStorage.getItem('IDs');
+
+        if (id == null) {
+            id = 1
+            localStorage.setItem('IDs', id);
+        }
 
         return id;
     }
@@ -62,11 +80,11 @@ class TaskController {
     createCards(data) {
         let card = document.createElement('article');
         card.innerHTML = `
-        <article id="a${id}" class="card">
+        <article id="a${data._id}" class="card">
             <section class="text">
-                <h4 class="title">${data.title}</h4>
-                <p class="description">${data.description}</p>
-                <span class="created">${data.created}</span>
+                <h4 class="title">${data._title}</h4>
+                <p class="description">${data._description}</p>
+                <span class="created">${data._created}</span>
             </section>
             <section class="icon">
                 <p><i class="fa-solid fa-star"></i></p>
@@ -75,7 +93,6 @@ class TaskController {
             </section>
         </article>
         `;
-        console.log(this.listaCards);
         this.listaCards.appendChild(card);
     }
 

@@ -68,13 +68,13 @@
     outline: none;
 }
 
-#search-add .add{
+#search-add #add{
     border: none;
     background-color: white;
     cursor: pointer;
 }
 
-#search-add .add:hover {
+#search-add #add:hover {
     color: rgb(29, 28, 28);
 }
 
