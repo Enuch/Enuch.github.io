@@ -11,7 +11,8 @@ class TaskController {
         this.addEventCallForm();
         this.addEventSubmitForm();
         this.addEventCancelForm();
-        this.addEventFilterTask();
+        this.addEventFilterTaskDone();
+        this.addEventFilterTaskStar();
         this.getAllTasks();
     }
 
@@ -54,11 +55,11 @@ class TaskController {
         });
     }
 
-    addEventFilterTask() {
+    addEventFilterTaskStar() {
         document.querySelector('#filterStar').addEventListener('click', this.filterCardsStar);
     }
 
-    addEventFilterTask() {
+    addEventFilterTaskDone() {
         document.querySelector('#filterDone').addEventListener('click', this.filterCardsDone);
     }
 
