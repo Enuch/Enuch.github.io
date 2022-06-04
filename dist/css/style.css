@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    position: relative;
+}
+
 #bar-header {
     width: 100vw;
     height: 45px;
@@ -143,35 +147,30 @@
     width: 100vw;
     height: 100vh;
 
-    
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-
+    
     background-color: rgba(0, 0, 0, 0.247);
 
     display: none;
 }
 
-#card-form {
+.wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+}
+
+#form {
     width: 300px;
     height: 450px;
 
     background-color: rgb(255, 255, 255);
-
-    display: grid;
-    place-items: center;
-    
-    margin: 0 auto;
-    margin-top: 16.875rem;
-    padding: 10px;
-
     border-radius: 20px;
-}
 
-#form {
-    width: 100%;
-    height: 100%;
 
     display: flex;
     justify-content: center;
