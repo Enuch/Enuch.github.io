@@ -6,6 +6,8 @@ class TaskController {
         this.buttonCallForm = document.querySelector('#add');
         this.listaCards = document.querySelector('.lista-cards');
         this.date = document.querySelector('.date');
+        this.filterStar = false;
+        this.filterDone = false;
 
         this.updateDateTime();
         this.addEventCallForm();
@@ -111,23 +113,42 @@ class TaskController {
     }
 
     filterCardsStar() {
-        document.querySelectorAll('.lista-cards .card').forEach((e) => {
-            let task = JSON.parse(e.dataset.task);
-            console.log(e);
-            if (!task._favorite) {
-                e.style.display = 'none';
-            }
-        });
+        this.filterStar = (this.filterStar) ? false : true;
+
+        if (this.filterStar) {
+            document.querySelectorAll('.lista-cards .card').forEach((e) => {
+                let task = JSON.parse(e.dataset.task);
+                console.log(e);
+                if (!task._favorite) {
+                    e.style.display = 'none';
+                } 
+            });
+        } else {
+            document.querySelectorAll('.lista-cards .card').forEach((e) => {
+                e.style.display = 'flex';
+            });
+        }
     }
 
     filterCardsDone() {
-        document.querySelectorAll('.lista-cards .card').forEach((e) => {
-            let task = JSON.parse(e.dataset.task);
-            console.log(e);
-            if (!task._done) {
-                e.style.display = 'none';
-            }
-        });
+        this.filterDone = (this.filterDone) ? false : true;
+
+        if (this.filterDone) {
+            document.querySelectorAll('.lista-cards .card').forEach((e) => {
+                let task = JSON.parse(e.dataset.task);
+                console.log(e);
+                if (!task._done) {
+                    e.style.display = 'none';
+                } else {
+                    e.style.display = 'flex';
+                }
+            });
+        } else {
+            document.querySelectorAll('.lista-cards .card').forEach((e) => {
+                e.style.display = 'flex';
+            });
+        }
+        
     }
 
     generateID() {
