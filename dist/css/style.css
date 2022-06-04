@@ -141,7 +141,7 @@
 
 #modal-form {
     width: 100vw;
-    height: 160vh;
+    height: 100vh;
 
     
     position: fixed;
@@ -159,9 +159,8 @@
 
     background-color: rgb(255, 255, 255);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
     
     margin: 0 auto;
     margin-top: 16.875rem;

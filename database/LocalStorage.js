@@ -16,10 +16,20 @@ class LocalStorage {
         return (arrayTask) ? arrayTask : false;
     }
 
+    static updateTask(idUpdate, newData) {
+        let arrayTask = JSON.parse(localStorage.getItem('tasks'));
+
+        arrayTask.forEach((data, index) => {
+            if (idUpdate == data._id) {
+                arrayTask[index] = newData;
+            }
+        });
+
+        localStorage.setItem('tasks', JSON.stringify(arrayTask));
+    }
+
     static deleteTask(idDelete) {
         let arrayTask = JSON.parse(localStorage.getItem('tasks'));
-        console.log(idDelete);
-        console.log(arrayTask);
 
         arrayTask.forEach((data, index) => {
             if (idDelete == data._id) {

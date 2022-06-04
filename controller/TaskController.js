@@ -11,6 +11,7 @@ class TaskController {
         this.addEventCallForm();
         this.addEventSubmitForm();
         this.addEventCancelForm();
+        this.addEventFilterTask();
         this.getAllTasks();
     }
 
@@ -28,6 +29,33 @@ class TaskController {
 
     addEventCallForm() {
         this.buttonCallForm.addEventListener('click', this.callForm);
+    }
+
+    addEventDone(card) {
+        card.querySelector('.fa-check').addEventListener('click', (e) => {
+            console.log(e);
+            let task = JSON.parse(card.dataset.task);
+            task._done = (!task._done) ? true : false;
+            e.path[0].style.color = (task._done) ? 'green' : 'white';
+            card.dataset.task = JSON.stringify(task);
+
+            LocalStorage.updateTask(card.id, task);
+        });
+    }
+
+    addEventFavorite(card) {
+        card.querySelector('.fa-star').addEventListener('click', (e) => {
+            let task = JSON.parse(card.dataset.task);
+            task._favorite = (!task._favorite) ? true : false;
+            e.path[0].style.color = (task._favorite) ? 'yellow' : 'white';
+            card.dataset.task = JSON.stringify(task);
+
+            LocalStorage.updateTask(card.id, task);
+        });
+    }
+
+    addEventFilterTask() {
+        document.querySelector('#filter').addEventListener('click', this.filterCards);
     }
 
     addEventDeleteTask(card) {
@@ -73,7 +101,17 @@ class TaskController {
         }
 
         tasks.forEach((data) => {
-            this.createCards(data)
+            this.createCards(data);
+        });
+    }
+
+    filterCards() {
+        document.querySelectorAll('.lista-cards .card').forEach((e) => {
+            let task = JSON.parse(e.dataset.task);
+            console.log(e);
+            if (!task._favorite) {
+                e.style.display = 'none';
+            }
         });
     }
 
@@ -102,12 +140,17 @@ class TaskController {
                 <span class="created">${data._created}</span>
             </section>
             <section class="icon">
-                <p><i class="fa-solid fa-star"></i></p>
-                <p><i class="fa-solid fa-check"></i></p>
+                <p><i class="fa-solid fa-star" style="color:${(data._favorite) ? 'yellow': 'white'}"></i></p>
+                <p><i class="fa-solid fa-check" ${(data._done) ? 'green': 'white'}></i></p>
                 <p><i class="fa-solid fa-trash fa-1x"></i></p>
             </section>
         `;
+
+        card.dataset.task = JSON.stringify(data);
+
         this.addEventDeleteTask(card);
+        this.addEventDone(card);
+        this.addEventFavorite(card);
         this.listaCards.appendChild(card);
     }
 
@@ -129,20 +172,3 @@ class TaskController {
     
 
 }
-// window.onload = () => {
-//     document.querySelector('.theme').addEventListener('click', onTheme);
-// };
-
-
-
-// Paínel
-
-
-// function onTheme() {
-//     (document.querySelector('.theme').style.color = 'yellow') ? 'white' : 'yellow';
-//     document.querySelector('body').style.backgroundColor = 'black';
-//     document.querySelector('#bar-header').style.backgroundColor = 'purple';
-//     document.querySelector('#busca-tarefa').style.borderBottom = '1px solid purple';
-
-// }
-
