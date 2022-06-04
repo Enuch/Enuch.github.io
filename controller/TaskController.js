@@ -55,7 +55,11 @@ class TaskController {
     }
 
     addEventFilterTask() {
-        document.querySelector('#filter').addEventListener('click', this.filterCards);
+        document.querySelector('#filterStar').addEventListener('click', this.filterCardsStar);
+    }
+
+    addEventFilterTask() {
+        document.querySelector('#filterDone').addEventListener('click', this.filterCardsDone);
     }
 
     addEventDeleteTask(card) {
@@ -105,11 +109,21 @@ class TaskController {
         });
     }
 
-    filterCards() {
+    filterCardsStar() {
         document.querySelectorAll('.lista-cards .card').forEach((e) => {
             let task = JSON.parse(e.dataset.task);
             console.log(e);
             if (!task._favorite) {
+                e.style.display = 'none';
+            }
+        });
+    }
+
+    filterCardsDone() {
+        document.querySelectorAll('.lista-cards .card').forEach((e) => {
+            let task = JSON.parse(e.dataset.task);
+            console.log(e);
+            if (!task._done) {
                 e.style.display = 'none';
             }
         });
